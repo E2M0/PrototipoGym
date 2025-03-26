@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="jMenu_Mantenimientos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mantenimientos "/>
           </Properties>
@@ -73,7 +73,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jm_MovimientosCuota">
+        <Menu class="javax.swing.JMenu" name="jMenu_Movimientos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Movimientos      "/>
           </Properties>
@@ -85,7 +85,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="jMenu_Procesos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Procesos   "/>
           </Properties>
@@ -113,7 +113,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="jMenu_Consultas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultas"/>
           </Properties>
@@ -122,6 +122,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="De Usuario"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jm_ConsultasUsuarioActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jm_ConsultasEntrenador">
               <Properties>

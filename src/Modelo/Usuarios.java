@@ -6,7 +6,6 @@ public class Usuarios {
     private String Pass_Usuario;
     private int Nivel_Acceso;
     private String Nombre_Usuario;
-    
     private String Apellido_Usuario;
     private String Correo_Usuario;
 

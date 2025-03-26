@@ -2,3 +2,12 @@ admin|Elian|1234|1|Mercado|elianmercado@gmail.com
 Elian|Elian|2654|0|Almanzar|elian@gmail.com
 123|Pedro|2654|0|Guzman|Pedro@gmail.com
 emmanuelg19|Emmanuel|1905|0|Grullon|
+09|Luis|124|0|Mercado|elian@gmail.com
+09|Luis|124|0|Mercado|elian@gmail.com
+001|Elian|092|1|Suarez|Suarezgmai,♠
+d|e|e||e|
+01||||Fernando|Fernando@gmail.com
+01|9090|Luis|Fernando@gmail.com|1|Fernando
+01|9090|Luis|Fernando@gmail.com||Fernando
+01|w||Fernando@gmail.com||Fernando
+1||2|||

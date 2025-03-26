@@ -5,6 +5,7 @@
  */
 package Visuales;
 
+import Consultas.CUsuarios;
 import Mantenimientos.Usuarios;
 
 /**
@@ -13,11 +14,23 @@ import Mantenimientos.Usuarios;
  */
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
-    public Menu() {
+     public Menu() {
+        initComponents(); // Constructor sin parámetros
+    }
+     
+    public Menu(String Nivel_Acceso) {
         initComponents();
+        setLocationRelativeTo(null);
+        ConfigMenu(Nivel_Acceso);
+       
+        
+    }
+    private void ConfigMenu(String Nivel_Acceso){
+    if(Nivel_Acceso.equals("0")){
+    jMenu_Mantenimientos.setEnabled(false);
+    jMenu_Movimientos.setEnabled(false);
+    jMenu_Procesos.setEnabled(false);
+    }
     }
 
     /**
@@ -33,7 +46,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
+        jMenu_Mantenimientos = new javax.swing.JMenu();
         jmt_MantenimientoUsuario = new javax.swing.JMenuItem();
         jmt_MantenimientoEntrenador = new javax.swing.JMenuItem();
         jmt_MantenimientoLocalizacion = new javax.swing.JMenuItem();
@@ -44,13 +57,13 @@ public class Menu extends javax.swing.JFrame {
         jmt_MantenimientoEstadoReserva = new javax.swing.JMenuItem();
         jmt_MantenimientoReserva = new javax.swing.JMenuItem();
         jmt_MantenimientoReservaActividades = new javax.swing.JMenuItem();
-        jm_MovimientosCuota = new javax.swing.JMenu();
+        jMenu_Movimientos = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        jMenu_Procesos = new javax.swing.JMenu();
         jm_ProcesosGenerarCobro = new javax.swing.JMenuItem();
         jm_ProcesosReservarCobro = new javax.swing.JMenuItem();
         jm_ProcesosActualizarCobro = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenu_Consultas = new javax.swing.JMenu();
         jm_ConsultasUsuario = new javax.swing.JMenuItem();
         jm_ConsultasEntrenador = new javax.swing.JMenuItem();
         jm_ConsultasLocalizacion = new javax.swing.JMenuItem();
@@ -95,7 +108,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jMenu3.setText("Mantenimientos ");
+        jMenu_Mantenimientos.setText("Mantenimientos ");
 
         jmt_MantenimientoUsuario.setText("De Usuario");
         jmt_MantenimientoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +116,7 @@ public class Menu extends javax.swing.JFrame {
                 jmt_MantenimientoUsuarioActionPerformed(evt);
             }
         });
-        jMenu3.add(jmt_MantenimientoUsuario);
+        jMenu_Mantenimientos.add(jmt_MantenimientoUsuario);
 
         jmt_MantenimientoEntrenador.setText("De Entrenador");
         jmt_MantenimientoEntrenador.addActionListener(new java.awt.event.ActionListener() {
@@ -111,22 +124,22 @@ public class Menu extends javax.swing.JFrame {
                 jmt_MantenimientoEntrenadorActionPerformed(evt);
             }
         });
-        jMenu3.add(jmt_MantenimientoEntrenador);
+        jMenu_Mantenimientos.add(jmt_MantenimientoEntrenador);
 
         jmt_MantenimientoLocalizacion.setText("De Localizacion");
-        jMenu3.add(jmt_MantenimientoLocalizacion);
+        jMenu_Mantenimientos.add(jmt_MantenimientoLocalizacion);
 
         jmt_MantenimientoSalas.setText("De Salas");
-        jMenu3.add(jmt_MantenimientoSalas);
+        jMenu_Mantenimientos.add(jmt_MantenimientoSalas);
 
         jmt_MantenimientoActividades.setText("De Actividades");
-        jMenu3.add(jmt_MantenimientoActividades);
+        jMenu_Mantenimientos.add(jmt_MantenimientoActividades);
 
         jmt_MantenimientoHorarioActividades.setText("De Horario Activades");
-        jMenu3.add(jmt_MantenimientoHorarioActividades);
+        jMenu_Mantenimientos.add(jmt_MantenimientoHorarioActividades);
 
         jmt_MantenimientoClientes.setText("De Clientes");
-        jMenu3.add(jmt_MantenimientoClientes);
+        jMenu_Mantenimientos.add(jmt_MantenimientoClientes);
 
         jmt_MantenimientoEstadoReserva.setText("Estado de Reserva");
         jmt_MantenimientoEstadoReserva.addActionListener(new java.awt.event.ActionListener() {
@@ -134,10 +147,10 @@ public class Menu extends javax.swing.JFrame {
                 jmt_MantenimientoEstadoReservaActionPerformed(evt);
             }
         });
-        jMenu3.add(jmt_MantenimientoEstadoReserva);
+        jMenu_Mantenimientos.add(jmt_MantenimientoEstadoReserva);
 
         jmt_MantenimientoReserva.setText("De Reserva");
-        jMenu3.add(jmt_MantenimientoReserva);
+        jMenu_Mantenimientos.add(jmt_MantenimientoReserva);
 
         jmt_MantenimientoReservaActividades.setText("Reserva Activadades");
         jmt_MantenimientoReservaActividades.addActionListener(new java.awt.event.ActionListener() {
@@ -145,18 +158,18 @@ public class Menu extends javax.swing.JFrame {
                 jmt_MantenimientoReservaActividadesActionPerformed(evt);
             }
         });
-        jMenu3.add(jmt_MantenimientoReservaActividades);
+        jMenu_Mantenimientos.add(jmt_MantenimientoReservaActividades);
 
-        jMenuBar2.add(jMenu3);
+        jMenuBar2.add(jMenu_Mantenimientos);
 
-        jm_MovimientosCuota.setText("Movimientos      ");
+        jMenu_Movimientos.setText("Movimientos      ");
 
         jMenuItem11.setText("Cuotas");
-        jm_MovimientosCuota.add(jMenuItem11);
+        jMenu_Movimientos.add(jMenuItem11);
 
-        jMenuBar2.add(jm_MovimientosCuota);
+        jMenuBar2.add(jMenu_Movimientos);
 
-        jMenu1.setText("Procesos   ");
+        jMenu_Procesos.setText("Procesos   ");
 
         jm_ProcesosGenerarCobro.setText("Generar Cobro");
         jm_ProcesosGenerarCobro.addActionListener(new java.awt.event.ActionListener() {
@@ -164,10 +177,10 @@ public class Menu extends javax.swing.JFrame {
                 jm_ProcesosGenerarCobroActionPerformed(evt);
             }
         });
-        jMenu1.add(jm_ProcesosGenerarCobro);
+        jMenu_Procesos.add(jm_ProcesosGenerarCobro);
 
         jm_ProcesosReservarCobro.setText("Reservar Cobro");
-        jMenu1.add(jm_ProcesosReservarCobro);
+        jMenu_Procesos.add(jm_ProcesosReservarCobro);
 
         jm_ProcesosActualizarCobro.setText("Actualizar Cobro");
         jm_ProcesosActualizarCobro.addActionListener(new java.awt.event.ActionListener() {
@@ -175,49 +188,54 @@ public class Menu extends javax.swing.JFrame {
                 jm_ProcesosActualizarCobroActionPerformed(evt);
             }
         });
-        jMenu1.add(jm_ProcesosActualizarCobro);
+        jMenu_Procesos.add(jm_ProcesosActualizarCobro);
 
-        jMenuBar2.add(jMenu1);
+        jMenuBar2.add(jMenu_Procesos);
 
-        jMenu2.setText("Consultas");
+        jMenu_Consultas.setText("Consultas");
 
         jm_ConsultasUsuario.setText("De Usuario");
-        jMenu2.add(jm_ConsultasUsuario);
+        jm_ConsultasUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_ConsultasUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu_Consultas.add(jm_ConsultasUsuario);
 
         jm_ConsultasEntrenador.setText("De Entrenador");
-        jMenu2.add(jm_ConsultasEntrenador);
+        jMenu_Consultas.add(jm_ConsultasEntrenador);
 
         jm_ConsultasLocalizacion.setText("De Localizacion");
-        jMenu2.add(jm_ConsultasLocalizacion);
+        jMenu_Consultas.add(jm_ConsultasLocalizacion);
 
         jm_ConsultasSalas.setText("De Salas");
-        jMenu2.add(jm_ConsultasSalas);
+        jMenu_Consultas.add(jm_ConsultasSalas);
 
         jm_ConsultasActividades.setText("De Activades");
-        jMenu2.add(jm_ConsultasActividades);
+        jMenu_Consultas.add(jm_ConsultasActividades);
 
         jm_ConsultasHorariosActividades.setText("De Horarios Activades");
-        jMenu2.add(jm_ConsultasHorariosActividades);
+        jMenu_Consultas.add(jm_ConsultasHorariosActividades);
 
         jm_ConsultasCobroPorRangoDeFecha.setText("De Cobro Por Rango de Fecha");
-        jMenu2.add(jm_ConsultasCobroPorRangoDeFecha);
+        jMenu_Consultas.add(jm_ConsultasCobroPorRangoDeFecha);
 
         jm_ConsultasCobroPorCliente.setText("De Cobro Por Cliente");
-        jMenu2.add(jm_ConsultasCobroPorCliente);
+        jMenu_Consultas.add(jm_ConsultasCobroPorCliente);
 
         jm_ConsultasCuotaPorFecha.setText("De Cuota Por Fecha");
-        jMenu2.add(jm_ConsultasCuotaPorFecha);
+        jMenu_Consultas.add(jm_ConsultasCuotaPorFecha);
 
         jm_ConsultasCuotaPorCliente.setText("De Cuota Por Cliente");
-        jMenu2.add(jm_ConsultasCuotaPorCliente);
+        jMenu_Consultas.add(jm_ConsultasCuotaPorCliente);
 
         jm_ConsultasClientes.setText("De Clientes");
-        jMenu2.add(jm_ConsultasClientes);
+        jMenu_Consultas.add(jm_ConsultasClientes);
 
         jm_ConsultasClientesPorBalancePendiente.setText("De Clientes Por Balance Pendiente");
-        jMenu2.add(jm_ConsultasClientesPorBalancePendiente);
+        jMenu_Consultas.add(jm_ConsultasClientesPorBalancePendiente);
 
-        jMenuBar2.add(jMenu2);
+        jMenuBar2.add(jMenu_Consultas);
 
         setJMenuBar(jMenuBar2);
 
@@ -265,6 +283,13 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jmt_MantenimientoUsuarioActionPerformed
 
+    private void jm_ConsultasUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_ConsultasUsuarioActionPerformed
+    CUsuarios m = new CUsuarios();
+    
+    m.setVisible(true);
+
+    }//GEN-LAST:event_jm_ConsultasUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,11 +328,12 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenu jMenu_Consultas;
+    private javax.swing.JMenu jMenu_Mantenimientos;
+    private javax.swing.JMenu jMenu_Movimientos;
+    private javax.swing.JMenu jMenu_Procesos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jm_ConsultasActividades;
     private javax.swing.JMenuItem jm_ConsultasClientes;
@@ -321,7 +347,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jm_ConsultasLocalizacion;
     private javax.swing.JMenuItem jm_ConsultasSalas;
     private javax.swing.JMenuItem jm_ConsultasUsuario;
-    private javax.swing.JMenu jm_MovimientosCuota;
     private javax.swing.JMenuItem jm_ProcesosActualizarCobro;
     private javax.swing.JMenuItem jm_ProcesosGenerarCobro;
     private javax.swing.JMenuItem jm_ProcesosReservarCobro;

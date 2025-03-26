@@ -5,6 +5,10 @@
  */
 package Visuales;
 
+import ManejoDeArchivo.ManejoArchivos;
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author elian
@@ -117,9 +121,54 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_UsuarioActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-    Menu m = new Menu();
-    m.setVisible(true);
-     dispose();
+    
+     String LoginIngresado = Usuario.getText();
+     String ContraseñaIngresada = Contraseña.getText();
+     
+     try {
+        ManejoArchivos M = new ManejoArchivos();
+        File Archivo = new File("Usuarios.txt");
+        String loginIngresado = Usuario.getText().trim();
+        String contraseñaIngresada = Contraseña.getText().trim();
+
+        String cadenaA = M.buscar(loginIngresado, Archivo);
+
+        if (cadenaA != null && !cadenaA.isEmpty()) {
+            // Separar la línea usando "|"
+            String[] datos = cadenaA.split("\\|");
+
+            if (datos.length >= 4) {
+                String LoginArchivo = datos[0];
+                String ContraseñaArchivo = datos[2];
+                String Nivel_Acceso = datos[3];
+
+                if (LoginIngresado.equals(LoginArchivo)||contraseñaIngresada.equals(ContraseñaArchivo)) {
+                    // Si la contraseña es correcta, damos acceso
+                    JOptionPane.showMessageDialog(this, "Acceso permitido", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    // Mostrar el menú principal
+                    Menu menu = new Menu(Nivel_Acceso);
+                    menu.setVisible(true);
+                    this.dispose(); // Cerrar la ventana de login
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error en formato de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Error en el formato del nivel de acceso.", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+  
+  
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

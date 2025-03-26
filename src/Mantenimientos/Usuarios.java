@@ -6,12 +6,17 @@
 
 package Mantenimientos;
 
+import ManejoDeArchivo.ManejoArchivos;
 import Visuales.Login;
 import Visuales.Menu;
 import java.awt.List;
+import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -24,6 +29,7 @@ public class Usuarios extends javax.swing.JFrame {
     /** Creates new form Usuarios */
     public Usuarios() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -50,8 +56,16 @@ public class Usuarios extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtNivel_Acceso = new javax.swing.JTextField();
+        lblEstado = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLoginKeyReleased(evt);
+            }
+        });
 
         jLabel1.setText("Login");
 
@@ -77,6 +91,11 @@ public class Usuarios extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -87,41 +106,65 @@ public class Usuarios extends javax.swing.JFrame {
 
         jLabel6.setText("Nivel de Acceso");
 
+        txtNivel_Acceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNivel_AccesoActionPerformed(evt);
+            }
+        });
+
+        lblEstado.setBackground(new java.awt.Color(0, 0, 0));
+        lblEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblError.setForeground(new java.awt.Color(153, 153, 153));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                            .addComponent(txtContraseña)
+                            .addComponent(txtNombre)
+                            .addComponent(txtApellido)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtNivel_Acceso))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnGuardar)
-                .addGap(18, 18, 18)
-                .addComponent(btnModificar)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModificar)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)))
                 .addComponent(btnSalir)
                 .addGap(0, 58, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                    .addComponent(txtContraseña)
-                    .addComponent(txtNombre)
-                    .addComponent(txtApellido)
-                    .addComponent(txtCorreo)
-                    .addComponent(txtNivel_Acceso))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(23, 23, 23)
+                .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -136,7 +179,7 @@ public class Usuarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -150,14 +193,17 @@ public class Usuarios extends javax.swing.JFrame {
                     .addComponent(btnGuardar)
                     .addComponent(btnModificar)
                     .addComponent(btnSalir))
-                .addGap(85, 85, 85))
+                .addGap(18, 18, 18)
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
- 
+    
+   ManejoArchivos M = new ManejoArchivos();
         
     File Archivo = new File("Usuarios.txt");
     try{
@@ -176,20 +222,19 @@ public class Usuarios extends javax.swing.JFrame {
     String Apellido = txtApellido.getText().trim();
     String Correo = txtCorreo.getText().trim();
         
-    if(Login.isEmpty()||Nombre.isEmpty()){
-    JOptionPane.showMessageDialog(null, "El Login y el Nombre no pueden estar Vacios. ");
+    if(Login.isEmpty()||Nombre.isEmpty()||Contraseña.isEmpty()||nivelAcceso.isEmpty()||Apellido.isEmpty()||Correo.isEmpty()){
+    JOptionPane.showMessageDialog(null, "No puede dejar campos vacios. ");
     return;
+    
+    }
+    try{
+    String Cadena = Login + "|" + Nombre + "|" + Contraseña + "|" + nivelAcceso + "|" + Apellido + "|"+ Correo;
+    M.GuardarDatos(Cadena, Archivo);
+    JOptionPane.showMessageDialog(this, "Usuario Agregado  exitosamente");
+    }catch(Exception e){
+    JOptionPane.showMessageDialog(this, "Error al guardar el Usuario");
     }
     
-    try(BufferedWriter Linea = new BufferedWriter(new FileWriter("Usuarios.txt",true))){
-    Linea.write(Login + "|" + Nombre + "|" + Contraseña + "|" + nivelAcceso + "|" + Apellido + "|"+ Correo);
-    Linea.newLine();
-    JOptionPane.showMessageDialog(null,"Usuario guardado exitosamente.");
-  
-    }catch(Exception e){
-    JOptionPane.showMessageDialog(null,"Error al guardar el Usuario.");
-    }
-        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -204,6 +249,115 @@ public class Usuarios extends javax.swing.JFrame {
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoActionPerformed
+
+    private void txtLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoginKeyReleased
+   if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+   ManejoArchivos M = new ManejoArchivos();
+   File Archivo = new File("Usuarios.txt");
+   String LoginIngresado = txtLogin.getText().trim();
+   String cadenaA = M.buscar(LoginIngresado, Archivo);
+   
+   if (cadenaA != null && !cadenaA.isEmpty()) {
+        // Separar la línea en partes usando "|"
+        String[] datos = cadenaA.split("\\|");
+
+        if (datos.length >= 6) {
+            txtContraseña.setText(datos[1]);
+            txtNombre.setText(datos[2]);
+            txtApellido.setText(datos[3]);
+            txtCorreo.setText(datos[4]);
+            txtNivel_Acceso.setText(datos[5]);
+
+         lblEstado.setText("Modificando");
+        } else {
+        JOptionPane.showMessageDialog(this, "No puede dejar campos vacios.");
+        }
+        }
+        else {
+        // No existe, limpiamos los campos para crear un usuario nuevo
+        txtContraseña.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtCorreo.setText("");
+        txtNivel_Acceso.setText("");
+        lblEstado.setText("Creando");
+    }
+   }
+   
+    }//GEN-LAST:event_txtLoginKeyReleased
+
+    private void txtNivel_AccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNivel_AccesoActionPerformed
+   
+        
+        
+        
+    }//GEN-LAST:event_txtNivel_AccesoActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+     ManejoArchivos M = new ManejoArchivos();
+    File Archivo = new File("Usuarios.txt");
+    File archivoN = new File("Auxiliar.txt"); // Archivo temporal
+
+    String loginIngresado = txtLogin.getText().trim();
+
+    // Verificar si el usuario existe en el archivo
+    String cadenaA =  M.buscar(loginIngresado, Archivo);
+
+    if (cadenaA == null) {
+         lblError.setText("Usuario no encontrado");
+        return; // Salir del método porque no hay usuario que modificar
+    }
+
+    // Si existe, obtener los nuevos valores ingresados
+    String nuevaContraseña = txtContraseña.getText().trim();
+    String nuevoNombre = txtNombre.getText().trim();
+    String nuevoApellido = txtApellido.getText().trim();
+    String nuevoCorreo = txtCorreo.getText().trim();
+    String nuevoNivel = txtNivel_Acceso.getText().trim();
+
+    // Crear la nueva línea con los datos actualizados
+    String nuevaLinea = loginIngresado + "|" + nuevaContraseña + "|" + nuevoNombre + "|" +
+                        nuevoApellido + "|" + nuevoCorreo + "|" + nuevoNivel;
+
+    try {
+        if (!archivoN.exists()) {
+            archivoN.createNewFile(); // Crear el archivo auxiliar si no existe
+        }
+
+        BufferedReader br = new BufferedReader(new FileReader(Archivo));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(archivoN));
+
+        String linea;
+        boolean usuarioEncontrado = false;
+        while ((linea = br.readLine()) != null) {
+            if (linea.equals(cadenaA)) {
+                bw.write(nuevaLinea + System.lineSeparator()); // Guardar la línea modificada
+                usuarioEncontrado = true;
+            } else {
+                bw.write(linea + System.lineSeparator()); // Copiar las otras líneas sin cambios
+            }
+        }
+
+        br.close();
+        bw.close();
+
+        // Eliminar el archivo original y renombrar el auxiliar
+        if (Archivo.delete()) {
+            if (!archivoN.renameTo(Archivo)) {
+                JOptionPane.showMessageDialog(this,"Error al renombrar archivo.");
+            } else {
+                lblEstado.setText("Usuario modificado correctamente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,"No se pudo eliminar el archivo original.");
+        }
+
+    } catch (IOException e) {
+    JOptionPane.showMessageDialog(this, "Error al modificar el usuario.");
+        
+    }
+
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,6 +404,8 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtCorreo;
