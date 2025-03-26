@@ -1,0 +1,4 @@
+admin|Elian|1234|1|Mercado|elianmercado@gmail.com
+Elian|Elian|2654|0|Almanzar|elian@gmail.com
+123|Pedro|2654|0|Guzman|Pedro@gmail.com
+emmanuelg19|Emmanuel|1905|0|Grullon|
