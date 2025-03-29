@@ -59,7 +59,7 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblError = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
+        btnLImpiar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtNivel_Acceso = new javax.swing.JTextField();
@@ -68,6 +68,7 @@ public class Usuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 0, 0));
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(102, 255, 102));
 
@@ -92,6 +93,12 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Leelawadee UI Semilight", 1, 14)); // NOI18N
         jLabel2.setText("Contraseña");
 
+        txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtContraseñaKeyReleased(evt);
+            }
+        });
+
         jLabel3.setBackground(new java.awt.Color(204, 255, 0));
         jLabel3.setFont(new java.awt.Font("Leelawadee UI Semilight", 1, 14)); // NOI18N
         jLabel3.setText("Nombre");
@@ -101,10 +108,20 @@ public class Usuarios extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+        });
 
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoActionPerformed(evt);
+            }
+        });
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyReleased(evt);
             }
         });
 
@@ -146,6 +163,7 @@ public class Usuarios extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 255, 51));
 
+        lblError.setBackground(new java.awt.Color(204, 0, 0));
         lblError.setForeground(new java.awt.Color(153, 153, 153));
 
         btnGuardar.setBackground(new java.awt.Color(51, 153, 255));
@@ -157,12 +175,12 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
 
-        btnModificar.setBackground(new java.awt.Color(0, 153, 255));
-        btnModificar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnLImpiar.setBackground(new java.awt.Color(0, 153, 255));
+        btnLImpiar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLImpiar.setText("Limpiar");
+        btnLImpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnLImpiarActionPerformed(evt);
             }
         });
 
@@ -180,18 +198,18 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(401, 401, 401))
+                        .addGap(70, 70, 70)
+                        .addComponent(btnLImpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +219,7 @@ public class Usuarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLImpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
         );
@@ -215,6 +233,14 @@ public class Usuarios extends javax.swing.JFrame {
                 txtNivel_AccesoActionPerformed(evt);
             }
         });
+        txtNivel_Acceso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNivel_AccesoKeyReleased(evt);
+            }
+        });
+
+        lblEstado.setBackground(new java.awt.Color(0, 0, 0));
+        lblEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jPanel5.setBackground(new java.awt.Color(51, 255, 51));
 
@@ -236,8 +262,29 @@ public class Usuarios extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCorreo)))
+                        .addGap(27, 27, 27)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNivel_Acceso, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,35 +293,15 @@ public class Usuarios extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(50, 50, 50)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(137, 137, 137)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(13, 13, 13)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNivel_Acceso, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(76, 76, 76)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -282,10 +309,8 @@ public class Usuarios extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,9 +348,8 @@ public class Usuarios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1))
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,44 +364,60 @@ public class Usuarios extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     
-   ManejoArchivos M = new ManejoArchivos();
-        
+    ManejoArchivos M = new ManejoArchivos();
     File Archivo = new File("Usuarios.txt");
+  
+   
+    //Si el Archivo no existe lo crea
     try{
     if(!Archivo.exists()){
     Archivo.createNewFile();
     }
-    }catch(Exception e){
+    }catch(IOException e){
     JOptionPane.showMessageDialog(this, "Error al crear el archivo.");
     return;
     }
     
+    //Obtener los datos ingresados
     String Login = txtLogin.getText().trim();
     String Nombre = txtNombre.getText().trim();
     String Contraseña = txtContraseña.getText().trim();
     String nivelAcceso = txtNivel_Acceso.getText().trim();
     String Apellido = txtApellido.getText().trim();
     String Correo = txtCorreo.getText().trim();
-        
+    String CadenaN = Login + "|" + Nombre + "|" + Contraseña + "|" + nivelAcceso + "|" + Apellido + "|"+ Correo;
+    //Validar los campos obligatorios    
     if(Login.isEmpty()||Nombre.isEmpty()||Contraseña.isEmpty()||nivelAcceso.isEmpty()||Apellido.isEmpty()||Correo.isEmpty()){
     JOptionPane.showMessageDialog(null, "No puede dejar campos vacios. ");
     return;
+    }
     
-    }
+    //Buscamos si el usuario existe, comparando su Usuario dentro del archivo.
+    String CadenaA = M.buscar(Login, Archivo);
+    
+    
     try{
-    String Cadena = Login + "|" + Nombre + "|" + Contraseña + "|" + nivelAcceso + "|" + Apellido + "|"+ Correo;
-    M.GuardarDatos(Cadena, Archivo);
-    JOptionPane.showMessageDialog(this, "Usuario Agregado  exitosamente");
-    }catch(Exception e){
-    JOptionPane.showMessageDialog(this, "Error al guardar el Usuario");
+    if(CadenaA==null){
+    lblEstado.setText("Creando");
+    M.GuardarDatos(CadenaN, Archivo);
+    JOptionPane.showMessageDialog(this, "Usuario Agregado exitosamente");
     }
+    else{
+    lblEstado.setText("Modificando");{
+    M.Modificar(CadenaA, CadenaN, Archivo);
+    JOptionPane.showMessageDialog(this, "Usuario Modificado exitosamente");
+    }
+    }
+    }catch(Exception ex){
+    JOptionPane.showMessageDialog(null, "Error al modificar");
+    }
+    
+    
     
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        //Llama al menu, borrar si no se le encuentra uso.
-        /*String[] args = null;
-        Menu.main(args);*/
+   
         
         dispose();
         
@@ -388,22 +428,26 @@ public class Usuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void txtLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoginKeyReleased
+  //Evento Key para cuando el Usuario Precione Enter si el Usuario Existe llenar los campos
    if(evt.getKeyCode()== KeyEvent.VK_ENTER){
    ManejoArchivos M = new ManejoArchivos();
    File Archivo = new File("Usuarios.txt");
    String LoginIngresado = txtLogin.getText().trim();
    String cadenaA = M.buscar(LoginIngresado, Archivo);
    
+   try{
    if (cadenaA != null && !cadenaA.isEmpty()) {
         // Separar la línea en partes usando "|"
         String[] datos = cadenaA.split("\\|");
 
-        if (datos.length >= 6) {
-            txtContraseña.setText(datos[1]);
-            txtNombre.setText(datos[2]);
-            txtApellido.setText(datos[3]);
-            txtCorreo.setText(datos[4]);
-            txtNivel_Acceso.setText(datos[5]);
+    if (datos.length >= 6) {
+        
+             txtLogin.setText(datos[0]);
+             txtNombre.setText(datos[1]);
+             txtContraseña.setText(datos[2]);
+             txtApellido.setText(datos[4]);
+             txtCorreo.setText(datos[5]);
+             txtNivel_Acceso.setText(datos[3]);
 
          lblEstado.setText("Modificando");
         } else {
@@ -411,107 +455,67 @@ public class Usuarios extends javax.swing.JFrame {
         }
         }
         else {
-        // No existe, limpiamos los campos para crear un usuario nuevo
-        txtContraseña.setText("");
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtCorreo.setText("");
-        txtNivel_Acceso.setText("");
-        lblEstado.setText("Creando");
+        //No existe, Limpiamos para crear un usuario
+         txtContraseña.setText("");
+         txtNombre.setText("");
+         txtApellido.setText("");
+         txtCorreo.setText("");
+         txtNivel_Acceso.setText("");
+         lblEstado.setText("Creando");
+         txtContraseña.requestFocus();
+   }
+    }catch(Exception e){
+     JOptionPane.showMessageDialog(null, "Error al buscar el Usuario");
     }
    }
    
     }//GEN-LAST:event_txtLoginKeyReleased
 
     private void txtNivel_AccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNivel_AccesoActionPerformed
-   
-        
-        
         
     }//GEN-LAST:event_txtNivel_AccesoActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-    ManejoArchivos M = new ManejoArchivos();
-    File Archivo = new File("Usuarios.txt");
-    File archivoN = new File("Auxiliar.txt"); // Archivo temporal
-
-    String loginIngresado = txtLogin.getText().trim();
-
-    // Verificar si el archivo original existe
-    if (!Archivo.exists()) {
-        lblError.setText("El archivo de usuarios no existe.");
-        return;
-    }
-
-    // Verificar si el usuario existe en el archivo
-    String cadenaA = M.buscar(loginIngresado, Archivo);
-
-    if (cadenaA == null) {
-        lblError.setText("Usuario no encontrado");
-        return; // Salir del método porque no hay usuario que modificar
-    }
-
-    // Si existe, obtener los nuevos valores ingresados
-    String nuevaContraseña = txtContraseña.getText().trim();
-    String nuevoNombre = txtNombre.getText().trim();
-    String nuevoApellido = txtApellido.getText().trim();
-    String nuevoCorreo = txtCorreo.getText().trim();
-    String nuevoNivel = txtNivel_Acceso.getText().trim();
-
-    // Crear la nueva línea con los datos actualizados
-    String nuevaLinea = loginIngresado + "|" + nuevaContraseña + "|" + nuevoNombre + "|" +
-                        nuevoApellido + "|" + nuevoCorreo + "|" + nuevoNivel;
-
-    try {
-        // Crear archivo auxiliar si no existe
-        if (!archivoN.exists()) {
-            archivoN.createNewFile();
-        }
-
-        BufferedReader br = new BufferedReader(new FileReader(Archivo));
-        BufferedWriter bw = new BufferedWriter(new FileWriter(archivoN));
-
-        String linea;
-        boolean usuarioEncontrado = false;
-
-        while ((linea = br.readLine()) != null) {
-            // Compara la línea del archivo con la línea que se desea modificar
-            if (linea.equals(cadenaA)) {
-                bw.write(nuevaLinea + System.lineSeparator()); // Guardar la línea modificada
-                usuarioEncontrado = true;
-            } else {
-                bw.write(linea + System.lineSeparator()); // Copiar las otras líneas sin cambios
-            }
-        }
-
-        br.close();
-        bw.flush();  // Asegurarse de que todo el contenido se escriba en el archivo
-        bw.close();
-
-        // Verificar si se encontró y modificó el usuario
-        if (usuarioEncontrado) {
-            // Eliminar el archivo original y renombrar el archivo auxiliar
-            if (Archivo.delete()) {
-                if (archivoN.renameTo(Archivo)) {
-                    lblEstado.setText("Usuario modificado correctamente.");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error al renombrar archivo.");
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo eliminar el archivo original.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo modificar el usuario.");
-        }
-
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Error al modificar el usuario: " + e.getMessage());
-    }
-    }//GEN-LAST:event_btnModificarActionPerformed
-
+    private void btnLImpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLImpiarActionPerformed
+    
+    txtLogin.setText("");
+    txtContraseña.setText("");
+    txtNombre.setText("");
+    txtApellido.setText("");
+    txtCorreo.setText("");
+    txtNivel_Acceso.setText("");
+    lblEstado.setText(""); 
+    
+    
+    }//GEN-LAST:event_btnLImpiarActionPerformed
+    
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtNivel_AccesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNivel_AccesoKeyReleased
+    
+    if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+    txtNombre.requestFocus();
+    }  
+    }//GEN-LAST:event_txtNivel_AccesoKeyReleased
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+  if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+    txtApellido.requestFocus();
+    }
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtContraseñaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyReleased
+      if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+    txtNivel_Acceso.requestFocus();
+    }
+    }//GEN-LAST:event_txtContraseñaKeyReleased
+
+    private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
+     if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+     txtCorreo.requestFocus();
+    }
+    }//GEN-LAST:event_txtApellidoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -550,7 +554,7 @@ public class Usuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnLImpiar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

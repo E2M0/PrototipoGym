@@ -6,6 +6,7 @@
 package Visuales;
 
 import ManejoDeArchivo.ManejoArchivos;
+import com.sun.glass.events.KeyEvent;
 import java.io.File;
 import javax.swing.JOptionPane;
 
@@ -47,6 +48,7 @@ public class Login extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         Contraseña = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -68,6 +70,11 @@ public class Login extends javax.swing.JFrame {
         Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsuarioActionPerformed(evt);
+            }
+        });
+        Usuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                UsuarioKeyReleased(evt);
             }
         });
         bg.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 220, 30));
@@ -102,6 +109,10 @@ public class Login extends javax.swing.JFrame {
         bg.add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 200, 30));
         bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
 
+        lblError.setFont(new java.awt.Font("Trebuchet MS", 1, 10)); // NOI18N
+        lblError.setForeground(new java.awt.Color(153, 153, 153));
+        bg.add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 290, 110, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,51 +136,56 @@ public class Login extends javax.swing.JFrame {
      String LoginIngresado = Usuario.getText();
      String ContraseñaIngresada = Contraseña.getText();
      
-     try {
-        ManejoArchivos M = new ManejoArchivos();
-        File Archivo = new File("Usuarios.txt");
-        String loginIngresado = Usuario.getText().trim();
-        String contraseñaIngresada = Contraseña.getText().trim();
+            try {
+            ManejoArchivos M = new ManejoArchivos();
+            File Archivo = new File("Usuarios.txt");
+            String loginIngresado = Usuario.getText().trim();
+            String contraseñaIngresada = Contraseña.getText().trim();
 
-        String cadenaA = M.buscar(loginIngresado, Archivo);
+            String cadenaA = M.buscar(loginIngresado, Archivo);
 
-        if (cadenaA != null && !cadenaA.isEmpty()) {
+            if (cadenaA != null && !cadenaA.isEmpty()) {
             // Separar la línea usando "|"
             String[] datos = cadenaA.split("\\|");
 
             if (datos.length >= 4) {
-                String LoginArchivo = datos[0];
-                String ContraseñaArchivo = datos[2];
-                String Nivel_Acceso = datos[3];
+            String LoginArchivo = datos[0];
+            String ContraseñaArchivo = datos[2];
+            String Nivel_Acceso = datos[3];
 
-                if (LoginIngresado.equals(LoginArchivo)||contraseñaIngresada.equals(ContraseñaArchivo)) {
-                    // Si la contraseña es correcta, damos acceso
-                    JOptionPane.showMessageDialog(this, "Acceso permitido", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    
-                    // Mostrar el menú principal
-                    Menu menu = new Menu(Nivel_Acceso);
-                    menu.setVisible(true);
-                    this.dispose(); // Cerrar la ventana de login
+            if (LoginIngresado.equals(LoginArchivo) && contraseñaIngresada.equals(ContraseñaArchivo)) {
+            // Si la contraseña es correcta, damos acceso
+            //JOptionPane.showMessageDialog(this, "Acceso permitido", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-                } else {
-                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Error en formato de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            // Mostrar el menú principal
+            Menu menu = new Menu(Nivel_Acceso);
+            menu.setVisible(true);
+            this.dispose(); // Cerrar la ventana de login
+
+            } else{
+            lblError.setText("Contraseña incorrecta o Usuario incorrecto.");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Error en el formato del nivel de acceso.", "Error", JOptionPane.ERROR_MESSAGE);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            } else{
+            //Si el Usuario ingresado le falta algun dato por x o y razon, lanza este mensaje
+            JOptionPane.showMessageDialog(this, "Error en formato de datos del Usuario.");
+            }
+            }else {
+            lblError.setText("Ese Usuario no existe");
+            }
+            } catch (Exception e ) {
+            JOptionPane.showMessageDialog(this, "Se ha producido un error al ingresar, intente denuevo.");
+            }
   
   
 
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void UsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsuarioKeyReleased
+     //Evento Key para cuando el Usuario Precione Enter se vaya automaticamente al otro Campo
+     if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+     Contraseña.requestFocus();
+    }
+    }//GEN-LAST:event_UsuarioKeyReleased
 
     /**
      * @param args the command line arguments
@@ -220,5 +236,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblError;
     // End of variables declaration//GEN-END:variables
 }
