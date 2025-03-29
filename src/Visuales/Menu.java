@@ -7,6 +7,7 @@ package Visuales;
 
 import Consultas.CUsuarios;
 import Mantenimientos.Usuarios;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,10 +27,13 @@ public class Menu extends javax.swing.JFrame {
         
     }
     private void ConfigMenu(String Nivel_Acceso){
-    if(Nivel_Acceso.equals("0")){
-    jMenu_Mantenimientos.setEnabled(false);
-    jMenu_Movimientos.setEnabled(false);
-    jMenu_Procesos.setEnabled(false);
+    if (Nivel_Acceso.equals("1")) {
+        jMenu_Mantenimientos.setEnabled(false);
+        jMenu_Movimientos.setEnabled(false);
+        jMenu_Procesos.setEnabled(false);
+        jMenu_Consultas.setEnabled(false);
+    } else if (!Nivel_Acceso.equals("1") && !Nivel_Acceso.equals("0")) {
+        JOptionPane.showMessageDialog(null, "Nivel de Acceso No válido, debe ser 0 o 1");
     }
     }
 

@@ -9,7 +9,7 @@ package Mantenimientos;
 import ManejoDeArchivo.ManejoArchivos;
 import Visuales.Login;
 import Visuales.Menu;
-import java.awt.List;
+import java.util.List;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,6 +32,57 @@ public class Usuarios extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Mantenimiento de Usuarios");
     }
+    
+    public void GuardarDatos(String datos, File archivo) {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+        bw.write(datos);
+        bw.newLine(); // Asegura que cada usuario esté en una nueva línea
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+    public String buscar(String login, File archivo) {
+    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            String[] datos = linea.split("\\|");
+            if (datos.length > 0 && datos[0].equals(login)) {
+                return linea; // Devuelve la línea completa si el usuario existe
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return null; // Usuario no encontrado
+}
+public void Modificar(String viejo, String nuevo, File archivo) {
+    List<String> lineas = new ArrayList<>();
+    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            if (linea.equals(viejo)) {
+                lineas.add(nuevo); // Reemplaza la línea
+            } else {
+                lineas.add(linea);
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        return;
+    }
+
+    // Escribir nuevamente el archivo con los datos actualizados
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+        for (String linea : lineas) {
+            bw.write(linea);
+            bw.newLine();
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -79,6 +130,11 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Leelawadee UI Semilight", 1, 14)); // NOI18N
         jLabel1.setText("Login");
 
+        txtLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLoginActionPerformed(evt);
+            }
+        });
         txtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtLoginKeyReleased(evt);
@@ -93,6 +149,11 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Leelawadee UI Semilight", 1, 14)); // NOI18N
         jLabel2.setText("Contraseña");
 
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseñaActionPerformed(evt);
+            }
+        });
         txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtContraseñaKeyReleased(evt);
@@ -240,6 +301,7 @@ public class Usuarios extends javax.swing.JFrame {
         });
 
         lblEstado.setBackground(new java.awt.Color(0, 0, 0));
+        lblEstado.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jPanel5.setBackground(new java.awt.Color(51, 255, 51));
@@ -363,9 +425,9 @@ public class Usuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-    
+
     ManejoArchivos M = new ManejoArchivos();
-    File Archivo = new File("Usuarios.txt");
+    File Archivo = new File("C:\\Proyecto-master\\Usuarios.txt");
   
    
     //Si el Archivo no existe lo crea
@@ -516,6 +578,14 @@ public class Usuarios extends javax.swing.JFrame {
      txtCorreo.requestFocus();
     }
     }//GEN-LAST:event_txtApellidoKeyReleased
+
+    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLoginActionPerformed
+
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseñaActionPerformed
 
     /**
      * @param args the command line arguments

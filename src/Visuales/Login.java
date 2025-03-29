@@ -45,10 +45,10 @@ public class Login extends javax.swing.JFrame {
         icono1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         icono2 = new javax.swing.JLabel();
-        btnIngresar = new javax.swing.JButton();
         Contraseña = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         lblError = new javax.swing.JLabel();
+        btnIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -92,18 +92,6 @@ public class Login extends javax.swing.JFrame {
         icono2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/depositphotos_718231796-stock-illustration-gym-high-quality-vector-logo.jpg"))); // NOI18N
         bg.add(icono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, -60, 360, 490));
 
-        btnIngresar.setBackground(new java.awt.Color(0, 0, 0));
-        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngresar.setText("INGRESAR");
-        btnIngresar.setBorderPainted(false);
-        btnIngresar.setFocusPainted(false);
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
-            }
-        });
-        bg.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 120, 30));
-
         Contraseña.setForeground(new java.awt.Color(153, 153, 153));
         Contraseña.setBorder(null);
         bg.add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 200, 30));
@@ -112,6 +100,16 @@ public class Login extends javax.swing.JFrame {
         lblError.setFont(new java.awt.Font("Trebuchet MS", 1, 10)); // NOI18N
         lblError.setForeground(new java.awt.Color(153, 153, 153));
         bg.add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 290, 110, 20));
+
+        btnIngresar.setBackground(new java.awt.Color(0, 204, 255));
+        btnIngresar.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btnIngresar.setText("INGRESAR");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+        bg.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 140, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,14 +129,20 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UsuarioActionPerformed
 
+    private void UsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsuarioKeyReleased
+     //Evento Key para cuando el Usuario Precione Enter se vaya automaticamente al otro Campo
+     if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+     Contraseña.requestFocus();
+    }
+    }//GEN-LAST:event_UsuarioKeyReleased
+
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-    
-     String LoginIngresado = Usuario.getText();
+        String LoginIngresado = Usuario.getText();
      String ContraseñaIngresada = Contraseña.getText();
      
             try {
             ManejoArchivos M = new ManejoArchivos();
-            File Archivo = new File("Usuarios.txt");
+            File Archivo = new File("C:\\Proyecto-master\\Usuarios.txt");
             String loginIngresado = Usuario.getText().trim();
             String contraseñaIngresada = Contraseña.getText().trim();
 
@@ -177,15 +181,7 @@ public class Login extends javax.swing.JFrame {
             }
   
   
-
     }//GEN-LAST:event_btnIngresarActionPerformed
-
-    private void UsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsuarioKeyReleased
-     //Evento Key para cuando el Usuario Precione Enter se vaya automaticamente al otro Campo
-     if(evt.getKeyCode()== KeyEvent.VK_ENTER){
-     Contraseña.requestFocus();
-    }
-    }//GEN-LAST:event_UsuarioKeyReleased
 
     /**
      * @param args the command line arguments

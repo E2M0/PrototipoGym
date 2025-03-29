@@ -11,3 +11,13 @@ d|e|e||e|
 01|9090|Luis|Fernando@gmail.com||Fernando
 01|w||Fernando@gmail.com||Fernando
 1||2|||
+ing|Luis jose|1309|0|Diaz gomez|luis@gmail.com
+Ing|Daniel|444|1|Carreon|daniel@gmail.com
+Lic|Samuel|122|0|Sanchez|samuel@gmail.com
+ING|Edrax|666|0|Tineo|edraxt@gmail.com
+Psi|Fernanda|0056|0|Lopez|fernan@gmail.com
+Arq|Kelvin|3232|0|Duarte|kelvin00@gmial.com
+Cont|Juan Francisco|2005|0|Baez|juanFrd@gmail.com
+Der|Nicol|54g3g|1|Ortega Jimenez|nicolprc@gmail.com
+Odontologo|Samanta|2025|0|Serrata Mota|samanta@gmail.com
+Sistemas|Alvaro|3434|0|Smith|alvaro89@gmail.com
